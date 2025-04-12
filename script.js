@@ -16,8 +16,7 @@ function getCompChoice() {
         return "scissors"
     }
 }
-
-console.log(getCompChoice());
+// console.log(getCompChoice());
 
 // FUNCTION returns players choice of rock, paper, or scissors
     // ask the user their choice and store in variable
@@ -25,23 +24,46 @@ console.log(getCompChoice());
         // store that choice in a variable and return it
     // ELSE
         // return and error and try again
-
 function getHumanChoice() {
-    let choice = prompt('rock, paper, or scissors?').toLowerCase();
-    if (choice == 'rock' 
-        || choice == 'paper' 
-        || choice == 'scissors') {
+    let choice = prompt('rock, paper, or scissors?');
+    if (choice.toLowerCase() == 'rock' 
+        || choice.toLowerCase() == 'paper' 
+        || choice.toLowerCase() == 'scissors') {
             return choice.toLowerCase();
     } else {
         console.log('Invalid input. Please try again.');
         return alert('Invalid input. Please try again.');
     }
 }
+// console.log(getHumanChoice());
 
-console.log(getHumanChoice());
+// console.log(playRound(getHumanChoice(), getCompChoice()))
 
-let humanScore = 0;
-let compScore = 0;
+// FUNCTION plays game and keeps score
+    // variables for scores
+    // FOR loop up to 5
+        // call playRound function
+        // IF playRound is equal to win message
+            // add 1 to humanScore
+        // ELSE IF playRound is equal to lose message
+            // add 1 to compScore
+
+function playGame() {
+    let humanScore = 0;
+    let compScore = 0;
+    for (let i = 0; i < 5; i++) {
+        getHumanChoice();
+        getCompChoice();
+        let roundResult = playRound(getHumanChoice(), getCompChoice());
+        if (roundResult == 'You won the round!') {
+            humanScore++
+        } else if (roundResult == 'You lost! Better luck next time!') {
+            compScore++
+        }
+    }
+    console.log(humanScore);
+    console.log(compScore);
+    // if (humanScore > compScore)
 
 // FUNCTION takes player choice and computer choice as arguments
     // IF player choice is rock and comp choice is scissors
@@ -50,15 +72,27 @@ let compScore = 0;
         // log player as winner
     // ELSE
         // log player as loser
-
-function playRound(humanChoice, compChoice) {
-    if ((humanChoice == 'rock' && compChoice == 'scissors') 
-        || (humanChoice == 'paper' && compChoice == 'rock')
-        || (humanChoice == 'scissors' && compChoice == 'paper')) {
-            console.log('You won the round!');
-            return alert('You won the round!');
+    function playRound(humanChoice, compChoice) {
+        if ((humanChoice == 'rock' && compChoice == 'scissors') 
+            || (humanChoice == 'paper' && compChoice == 'rock')
+            || (humanChoice == 'scissors' && compChoice == 'paper')) {
+                console.log(humanChoice);
+                console.log(compChoice);
+                console.log('You won the round!');
+                return alert('You won the round!');
+        } else if ((compChoice == 'rock' && humanChoice == 'scissors') 
+            || (compChoice == 'paper' && humanChoice == 'rock')
+            || (compChoice == 'scissors' && humanChoice == 'paper')) {
+                console.log(humanChoice);
+                console.log(compChoice);
+                console.log('You lost! Better luck next time!');
+                return alert('You lost! Better luck next time!');
         } else {
-            console.log('You lost! Better luck next time!');
-            alert('You lost! Better luck next time!');
-        }
+            console.log(humanChoice);
+            console.log(compChoice);
+            console.log('Draw!');
+            return alert('Draw!');
+        }   
+    }
 }
+playGame();     
