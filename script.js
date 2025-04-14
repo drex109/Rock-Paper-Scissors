@@ -10,7 +10,7 @@ function getCompChoice() {
     let randomNum = Math.floor((Math.random() * 3) + 1);
     if (randomNum === 1) {    
         return "rock"
-    } else if (randomNum == 2) {    
+    } else if (randomNum === 2) {    
         return "paper"
     } else {
         return "scissors"
@@ -52,14 +52,16 @@ function playGame() {
     let humanScore = 0;
     let compScore = 0;
     for (let i = 0; i < 5; i++) {
-        getHumanChoice();
-        getCompChoice();
-        let roundResult = playRound(getHumanChoice(), getCompChoice());
+        let roundResult = playRound(getHumanChoice(), getCompChoice());       
         if (roundResult == 'You won the round!') {
             humanScore++
+            alert('You won the round!');
         } else if (roundResult == 'You lost! Better luck next time!') {
             compScore++
-        }
+            alert('You lost! Better luck next time!');
+        } else {
+            alert('Draw!');
+        }    
     }
     console.log(humanScore);
     console.log(compScore);
@@ -79,19 +81,19 @@ function playGame() {
                 console.log(humanChoice);
                 console.log(compChoice);
                 console.log('You won the round!');
-                return alert('You won the round!');
+                return 'You won the round!';
         } else if ((compChoice == 'rock' && humanChoice == 'scissors') 
             || (compChoice == 'paper' && humanChoice == 'rock')
             || (compChoice == 'scissors' && humanChoice == 'paper')) {
                 console.log(humanChoice);
                 console.log(compChoice);
                 console.log('You lost! Better luck next time!');
-                return alert('You lost! Better luck next time!');
+                return 'You lost! Better luck next time!'
         } else {
             console.log(humanChoice);
             console.log(compChoice);
             console.log('Draw!');
-            return alert('Draw!');
+            return 'Draw!';
         }   
     }
 }
