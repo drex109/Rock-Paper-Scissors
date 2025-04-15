@@ -58,14 +58,23 @@ function playGame() {
             alert('You won the round!');
         } else if (roundResult == 'You lost! Better luck next time!') {
             compScore++
-            alert('You lost! Better luck next time!');
+            alert('Round lost! Better luck next time!');
         } else {
             alert('Draw!');
         }    
     }
     console.log(humanScore);
     console.log(compScore);
-    // if (humanScore > compScore)
+    if (humanScore > compScore){
+        console.log('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore)
+        alert('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore);
+    } else if (compScore > humanScore) {
+        console.log('YOu lost the game! Your score: ' + humanScore +' Computer score: ' + compScore)
+        alert('You lost the game! Your score: ' + humanScore +' Computer score: ' + compScore);
+    } else {
+        console.log('Tie!')
+        alert('Tie!')
+    }
 
 // FUNCTION takes player choice and computer choice as arguments
     // IF player choice is rock and comp choice is scissors
