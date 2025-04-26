@@ -10,44 +10,58 @@ function getCompChoice() {
 }
 
 function getHumanChoice() {
-    let choice = prompt('rock, paper, or scissors?');
-    if (choice.toLowerCase() == 'rock' 
-        || choice.toLowerCase() == 'paper' 
-        || choice.toLowerCase() == 'scissors') {
-            return choice.toLowerCase();
-    } else {
-        console.log('Invalid input. Please try again.');
-        return alert('Invalid input. Please try again.');
-    }
-}
+    let playerChoice = document.querySelector("#player-choices")
 
+    playerChoice.addEventListener('click', (e) => {
+        let target = e.target;
+
+        switch(target.id) {
+            case 'rock':
+                return target.id;
+            case 'paper':
+                return target.id;
+            case 'scissors':
+                return target.id;
+        }
+    })
+    // let choice = prompt('rock, paper, or scissors?');
+    // if (choice.toLowerCase() == 'rock' 
+    //     || choice.toLowerCase() == 'paper' 
+    //     || choice.toLowerCase() == 'scissors') {
+    //         return choice.toLowerCase();
+    // } else {
+    //     console.log('Invalid input. Please try again.');
+    //     return alert('Invalid input. Please try again.');
+    // }
+}
+getHumanChoice();
 function playGame() {
-    let humanScore = 0;
-    let compScore = 0;
-    for (let i = 0; i < 5; i++) {
-        let roundResult = playRound(getHumanChoice(), getCompChoice());       
-        if (roundResult == 'You won the round!') {
-            humanScore++
-            alert('You won the round!');
-        } else if (roundResult == 'You lost! Better luck next time!') {
-            compScore++
-            alert('Round lost! Better luck next time!');
-        } else {
-            alert('Draw!');
-        }    
-    }
-    console.log(humanScore);
-    console.log(compScore);
-    if (humanScore > compScore){
-        console.log('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore)
-        alert('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore);
-    } else if (compScore > humanScore) {
-        console.log('YOu lost the game! Your score: ' + humanScore +' Computer score: ' + compScore)
-        alert('You lost the game! Your score: ' + humanScore +' Computer score: ' + compScore);
-    } else {
-        console.log('Tie!')
-        alert('Tie!')
-    }
+//     let humanScore = 0;
+//     let compScore = 0;
+//     for (let i = 0; i < 5; i++) {
+//         let roundResult = playRound(getHumanChoice(), getCompChoice());       
+//         if (roundResult == 'You won the round!') {
+//             humanScore++
+//             alert('You won the round!');
+//         } else if (roundResult == 'You lost! Better luck next time!') {
+//             compScore++
+//             alert('Round lost! Better luck next time!');
+//         } else {
+//             alert('Draw!');
+//         }    
+//     }
+//     console.log(humanScore);
+//     console.log(compScore);
+//     if (humanScore > compScore){
+//         console.log('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore)
+//         alert('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore);
+//     } else if (compScore > humanScore) {
+//         console.log('YOu lost the game! Your score: ' + humanScore +' Computer score: ' + compScore)
+//         alert('You lost the game! Your score: ' + humanScore +' Computer score: ' + compScore);
+//     } else {
+//         console.log('Tie!')
+//         alert('Tie!')
+//     }
 
     function playRound(humanChoice, compChoice) {
         if ((humanChoice == 'rock' && compChoice == 'scissors') 
