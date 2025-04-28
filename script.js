@@ -9,61 +9,56 @@ function getCompChoice() {
     }
 }
 
-function getHumanChoice() {
-    let playerChoice = document.querySelector("#player-choices")
-
-    playerChoice.addEventListener('click', (e) => {
-        let target = e.target;
-
-        switch(target.id) {
-            case 'rock':
-                return target.id;
-            case 'paper':
-                return target.id;
-            case 'scissors':
-                return target.id;
-        }
-    })
-    // let choice = prompt('rock, paper, or scissors?');
-    // if (choice.toLowerCase() == 'rock' 
-    //     || choice.toLowerCase() == 'paper' 
-    //     || choice.toLowerCase() == 'scissors') {
-    //         return choice.toLowerCase();
-    // } else {
-    //     console.log('Invalid input. Please try again.');
-    //     return alert('Invalid input. Please try again.');
-    // }
+async function getHumanChoice() {
+    let playerChoice = document.querySelector("#player-choices");
+    // trying to refactor my code to work while changing very little led me to learning about promises
+    return new Promise((resolve) => {
+        playerChoice.addEventListener('click', (e) => {
+            let target = e.target;
+            switch(target.id) {
+                case 'rock':
+                case 'paper':   
+                case 'scissors':
+                    resolve(target.id);  
+                    break;
+            }
+        }, { once: true });
+    });
 }
-getHumanChoice();
-function playGame() {
-//     let humanScore = 0;
-//     let compScore = 0;
-//     for (let i = 0; i < 5; i++) {
-//         let roundResult = playRound(getHumanChoice(), getCompChoice());       
-//         if (roundResult == 'You won the round!') {
-//             humanScore++
-//             alert('You won the round!');
-//         } else if (roundResult == 'You lost! Better luck next time!') {
-//             compScore++
-//             alert('Round lost! Better luck next time!');
-//         } else {
-//             alert('Draw!');
-//         }    
-//     }
-//     console.log(humanScore);
-//     console.log(compScore);
-//     if (humanScore > compScore){
-//         console.log('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore)
-//         alert('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore);
-//     } else if (compScore > humanScore) {
-//         console.log('YOu lost the game! Your score: ' + humanScore +' Computer score: ' + compScore)
-//         alert('You lost the game! Your score: ' + humanScore +' Computer score: ' + compScore);
-//     } else {
-//         console.log('Tie!')
-//         alert('Tie!')
-//     }
+
+async function playGame() {
+    let humanScore = 0;
+    let compScore = 0;
+    const choice = await getHumanChoice();
+
+    for (let i = 0; i < 5; i++) {
+        let roundResult = playRound(choice, getCompChoice());       
+        if (roundResult == 'You won the round!') {
+            humanScore++
+            alert('You won the round!');
+        } else if (roundResult == 'You lost! Better luck next time!') {
+            compScore++
+            alert('Round lost! Better luck next time!');
+        } else {
+            alert('Draw!');
+        }    
+    }
+
+    console.log(humanScore);
+    console.log(compScore);
+    if (humanScore > compScore){
+        console.log('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore)
+        alert('Congrats, you won the game! Your score: ' + humanScore +' Computer score: ' + compScore);
+    } else if (compScore > humanScore) {
+        console.log('You lost the game! Your score: ' + humanScore +' Computer score: ' + compScore)
+        alert('You lost the game! Your score: ' + humanScore +' Computer score: ' + compScore);
+    } else {
+        console.log('Tie!')
+        alert('Tie!')
+    }
 
     function playRound(humanChoice, compChoice) {
+        
         if ((humanChoice == 'rock' && compChoice == 'scissors') 
             || (humanChoice == 'paper' && compChoice == 'rock')
             || (humanChoice == 'scissors' && compChoice == 'paper')) {
@@ -85,5 +80,8 @@ function playGame() {
             return 'Draw!';
         }   
     }
+    
+    let resultTxt = document.querySelector('#results');
+
 }
 playGame();     
