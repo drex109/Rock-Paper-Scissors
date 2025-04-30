@@ -21,3 +21,23 @@ h1{
     background-color: rgb(30, 30, 30);
     border-radius: 20%;
 }
+#score-keeper{
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 2em;
+}
+#round-results{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 1em;
+}
+#game-results{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 1em;
+}
